@@ -58,7 +58,8 @@ sys.stdout.write('\nPlaintext:\n')
 i = 0 # inclusive, start of char sys.stdout.write
 j = 80 # exclusive, end of char sys.stdout.write
 while(i < len(plain)): # while i is smaller than length of the plaintext
-    sys.stdout.write(plain[i:j], '\n') # sys.stdout.write the range of chars
+    sys.stdout.write(plain[i:j]) # sys.stdout.write the range of chars
+    sys.stdout.write('\n')
     # note: python checks for index out of bounds, so program wont crash if j is longer than the string
     i+=80 # increment i 
     j+=80 # increment j 
