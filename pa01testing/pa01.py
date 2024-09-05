@@ -78,7 +78,7 @@ while(i < len(plain)): # iterate through the plaintext
         sum = 0
         for col in range(0, block_len):
             sum+= key[row][col] * plain[i+col]
-        cipher+=chr(sum%26 + 97)
+        cipher+=chr(sum%26)
 
     #print(vector)
     i+=block_len
