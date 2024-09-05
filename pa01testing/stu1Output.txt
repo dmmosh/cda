@@ -7,5 +7,4 @@ Plaintext:
 notonlyistheuniversestrangerthanwethinkitisstrangerthanwecanthinkwernerheisenber
 gx
 
-
 Cyphertext:
