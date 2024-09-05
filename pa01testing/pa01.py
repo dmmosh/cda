@@ -31,6 +31,16 @@ import sys
 from sys import argv
 import os 
 
+def out(input:str):
+    i = 0 # inclusive, start of char sys.stdout.write
+    j = 80 # exclusive, end of char sys.stdout.write
+    while(i < len(input)): # while i is smaller than length of the plaintext
+        sys.stdout.write(input[i:j]) # sys.stdout.write the range of chars
+        sys.stdout.write('\n')
+        # note: python checks for index out of bounds, so program wont crash if j is longer than the string
+        i+=80 # increment i 
+        j+=80 # increment j 
+
 # note: sys stdout instead of print ( just in case )
 
 # converts the txt file to 2d list 
@@ -52,28 +62,28 @@ sys.stdout.write('\nKey matrix:\n')
 sys.stdout.write('\t')
 sys.stdout.write('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]))
 
-#sys.stdout.writes the plaintext
-sys.stdout.write('\nPlaintext:\n') # plaintext
-# 80 chars per sys.stdout.write line total
-i = 0 # inclusive, start of char sys.stdout.write
-j = 80 # exclusive, end of char sys.stdout.write
-while(i < len(plain)): # while i is smaller than length of the plaintext
-    sys.stdout.write(plain[i:j]) # sys.stdout.write the range of chars
-    sys.stdout.write('\n')
-    # note: python checks for index out of bounds, so program wont crash if j is longer than the string
-    i+=80 # increment i 
-    j+=80 # increment j 
+out('\nPlaintext:\n')
+
+out(plain)
 
 sys.stdout.write('\nCiphertext:\n') # ciphertext portion
 # actually cool stuff
 cipher = ''
 i = 0 # i to i + block_len ( exclusive)
 while(i < len(plain)): # iterate through the plaintext
-    vector = plain[i:i+block_len]
-    print(vector)
+    # matrix = key
+    # note: matrix is square always
+    vector = plain[i:i+block_len] # the vector
+    for row in range(0, block_len):
+        sum = 0
+        for col in range(0, block_len):
+            sum+= key[row][col] * plain[i+col]
+        cipher+=chr(sum%26 + 97)
 
+    #print(vector)
     i+=block_len
 
+out(cipher)
 
 #os.system('cat ' + argv[1] + ' | sed \'1d\'')
 
