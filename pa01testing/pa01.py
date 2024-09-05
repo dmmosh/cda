@@ -49,7 +49,7 @@ key = [list(map(int,line.split())) for line in open(argv[1])][1:]
 block_len = len(key) # block length
 
 
-plain = ''.join(ch for ch in open(argv[2]).read().lower() if ch.isalnum())  # the plaintext, lowercase and alpha only
+plain = ''.join(ch for ch in open(argv[2]).read().lower() if ch.isalnum() or ch.isdigit())  # the plaintext, lowercase and alpha only
 plain += str('x'*(block_len-(len(plain)%block_len))) # adds padding (key length - (plain length % key length ))
 
 #sys.stdout.write(data) debug
