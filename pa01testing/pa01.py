@@ -34,13 +34,35 @@ import os
 # converts the txt file to 2d list 
 #1st element (data[0][0]) is the matrix size (x by x)
 key = [list(map(int,line.split())) for line in open(argv[1])]
+
+
+plain = ''.join(ch for ch in open(argv[2]).read().lower() if ch.isalnum())  # the plaintext, lowercase and alpha only
+plain += str('x'*(key[0][0]-(len(plain)%key[0][0]))) # adds padding (key length - (plain length % key length ))
+
 #print(data) debug
 
 #print(data)
 
+
+# prints the key matrix
 print('\nKey matrix:')
 print('\t', end='')
 print('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]), end='', sep='')
+
+#prints the plaintext
+print('\nPlaintext:')
+
+
+# 80 chars per print line total
+i = 0 # inclusive, start of char print
+j = 80 # exclusive, end of char print
+while(i < len(plain)):
+    print(plain[i:j])
+    i+=80
+    j+=80
+
+print('\nCyphertext:')
+
 
 #os.system('cat ' + argv[1] + ' | sed \'1d\'')
 
