@@ -47,7 +47,7 @@ plain += str('x'*(key[0][0]-(len(plain)%key[0][0]))) # adds padding (key length 
 # sys.stdout.writes the key matrix
 sys.stdout.write('\nKey matrix:\n')
 sys.stdout.write('\t')
-sys.stdout.write('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]))
+sys.stdout.write('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]).join('\n'))
 
 #sys.stdout.writes the plaintext
 sys.stdout.write('\n')
