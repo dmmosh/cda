@@ -41,7 +41,7 @@ key = [list(map(int,line.split())) for line in open(argv[1])]
 # print('\t', end='')
 # print('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]), end='', sep='')
 
-os.system('echo -e \'Key matrix:\'')
+print('\nKey matrix:')
 os.system('cat ' + argv[1] + ' | sed \'1d\'')
 
 
