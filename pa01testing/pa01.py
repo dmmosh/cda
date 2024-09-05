@@ -32,10 +32,18 @@ from sys import argv
 import os 
 
 # converts the txt file to 2d list 
-data = [list(map(int,line.split())) for line in open(argv[1])]
+#1st element (data[0][0]) is the matrix size (x by x)
+key = [list(map(int,line.split())) for line in open(argv[1])]
 #print(data) debug
 
-print(open(argv[1]))
+#print(data)
+
+# print('\t', end='')
+# print('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]), end='', sep='')
+
+os.system('echo -e \'Key matrix:\'')
+os.system('cat ' + argv[1] + ' | sed \'1d\'')
+
 
 '''
 =============================================================================

@@ -1,1 +1,3 @@
-<_io.TextIOWrapper name='k1.txt' mode='r' encoding='UTF-8'>
+Key matrix:
+2	4
+3	5
