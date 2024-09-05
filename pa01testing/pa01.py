@@ -39,29 +39,30 @@ key = [list(map(int,line.split())) for line in open(argv[1])]
 plain = ''.join(ch for ch in open(argv[2]).read().lower() if ch.isalnum())  # the plaintext, lowercase and alpha only
 plain += str('x'*(key[0][0]-(len(plain)%key[0][0]))) # adds padding (key length - (plain length % key length ))
 
-#print(data) debug
+#sys.stdout.write(data) debug
 
-#print(data)
-
-
-# prints the key matrix
-print('\nKey matrix:')
-print('\t', end='')
-print('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]), end='', sep='')
-
-#prints the plaintext
-print('\nPlaintext:')
+#sys.stdout.write(data)
 
 
-# 80 chars per print line total
-i = 0 # inclusive, start of char print
-j = 80 # exclusive, end of char print
-while(i < len(plain)):
-    print(plain[i:j])
-    i+=80
-    j+=80
+# sys.stdout.writes the key matrix
+sys.stdout.write('\nKey matrix:\n')
+sys.stdout.write('\t')
+sys.stdout.write('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]))
 
-print('\nCyphertext:')
+#sys.stdout.writes the plaintext
+sys.stdout.write('\n\nPlaintext:\n')
+
+
+# 80 chars per sys.stdout.write line total
+i = 0 # inclusive, start of char sys.stdout.write
+j = 80 # exclusive, end of char sys.stdout.write
+while(i < len(plain)): # while i is smaller than length of the plaintext
+    sys.stdout.write(plain[i:j], '\n') # sys.stdout.write the range of chars
+    # note: python checks for index out of bounds, so program wont crash if j is longer than the string
+    i+=80 # increment i 
+    j+=80 # increment j 
+
+sys.stdout.write('\n\nCyphertext:\n')
 
 
 #os.system('cat ' + argv[1] + ' | sed \'1d\'')

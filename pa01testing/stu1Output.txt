@@ -6,3 +6,5 @@ Key matrix:
 Plaintext:
 notonlyistheuniversestrangerthanwethinkitisstrangerthanwecanthinkwernerheisenber
 gx
+
+Cyphertext:
