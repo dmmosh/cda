@@ -50,7 +50,8 @@ sys.stdout.write('\t')
 sys.stdout.write('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]))
 
 #sys.stdout.writes the plaintext
-sys.stdout.write('\n\nPlaintext:\n')
+sys.stdout.write('\n')
+sys.stdout.write('\nPlaintext:\n')
 
 
 # 80 chars per sys.stdout.write line total
