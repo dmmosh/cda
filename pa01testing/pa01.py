@@ -63,7 +63,7 @@ while(i < len(plain)): # while i is smaller than length of the plaintext
     i+=80 # increment i 
     j+=80 # increment j 
 
-sys.stdout.write('\n\nCyphertext:\n')
+sys.stdout.write('\nCyphertext:\n')
 
 
 #os.system('cat ' + argv[1] + ' | sed \'1d\'')
