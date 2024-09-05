@@ -38,11 +38,11 @@ key = [list(map(int,line.split())) for line in open(argv[1])]
 
 #print(data)
 
-# print('\t', end='')
-# print('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]), end='', sep='')
-
 print('\nKey matrix:')
-os.system('cat ' + argv[1] + ' | sed \'1d\'')
+print('\t', end='')
+print('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]), end='', sep='')
+
+#os.system('cat ' + argv[1] + ' | sed \'1d\'')
 
 
 '''
