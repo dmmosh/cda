@@ -31,13 +31,16 @@ import sys
 from sys import argv
 import os 
 
+# note: sys stdout instead of print ( just in case )
+
 # converts the txt file to 2d list 
 #1st element (data[0][0]) is the matrix size (x by x)
 key = [list(map(int,line.split())) for line in open(argv[1])][1:]
+block_len = len(key) # block length
 
 
 plain = ''.join(ch for ch in open(argv[2]).read().lower() if ch.isalnum())  # the plaintext, lowercase and alpha only
-plain += str('x'*(len(key)-(len(plain)%len(key)))) # adds padding (key length - (plain length % key length ))
+plain += str('x'*(block_len-(len(plain)%block_len))) # adds padding (key length - (plain length % key length ))
 
 #sys.stdout.write(data) debug
 
@@ -63,7 +66,8 @@ while(i < len(plain)): # while i is smaller than length of the plaintext
 
 sys.stdout.write('\nCiphertext:\n') # ciphertext portion
 # actually cool stuff
-
+cipher = ''
+i = 0 # i to i + block_len
 
 #os.system('cat ' + argv[1] + ' | sed \'1d\'')
 
