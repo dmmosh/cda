@@ -62,7 +62,7 @@ sys.stdout.write('\nKey matrix:\n')
 sys.stdout.write('\t')
 sys.stdout.write('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]))
 
-sys.stdout.write('\nPlaintext:')
+sys.stdout.write('\nPlaintext:\n')
 
 out(plain)
 
