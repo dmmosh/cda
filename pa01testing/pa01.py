@@ -67,7 +67,12 @@ while(i < len(plain)): # while i is smaller than length of the plaintext
 sys.stdout.write('\nCiphertext:\n') # ciphertext portion
 # actually cool stuff
 cipher = ''
-i = 0 # i to i + block_len
+i = 0 # i to i + block_len ( exclusive)
+while(i < len(plain)):
+    print(ord(plain[i])-97)
+    
+    i+=block_len
+
 
 #os.system('cat ' + argv[1] + ' | sed \'1d\'')
 
