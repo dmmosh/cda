@@ -32,11 +32,11 @@ from sys import argv
 import os 
 
 def out(input:str):
-    i = 0 # inclusive, start of char out
-    j = 80 # exclusive, end of char out
+    i = 0 # inclusive, start of char sys.stdout.write
+    j = 80 # exclusive, end of char sys.stdout.write
     while(i < len(input)): # while i is smaller than length of the plaintext
-        out(input[i:j]) # out the range of chars
-        out('\n')
+        sys.stdout.write(input[i:j]) # sys.stdout.write the range of chars
+        sys.stdout.write('\n')
         # note: python checks for index out of bounds, so program wont crash if j is longer than the string
         i+=80 # increment i 
         j+=80 # increment j 
@@ -52,22 +52,22 @@ block_len = len(key) # block length
 plain = ''.join(ch for ch in open(argv[2]).read().lower() if ch.isalnum())  # the plaintext, lowercase and alpha only
 plain += str('x'*(block_len-(len(plain)%block_len))) # adds padding (key length - (plain length % key length ))
 
-#out(data) debug
+#sys.stdout.write(data) debug
 
-#out(data)
+#sys.stdout.write(data)
 
 
-# outs the key matrix
-out('\nKey matrix:\n')
-out('\t')
-out('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]))
+# sys.stdout.writes the key matrix
+sys.stdout.write('\nKey matrix:\n')
+sys.stdout.write('\t')
+sys.stdout.write('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]))
 
 out('\nPlaintext:')
-out('\n')
+sys.stdout.write('\n')
 
 out(plain)
 
-out('\nCiphertext:\n') # ciphertext portion
+sys.stdout.write('\nCiphertext:\n') # ciphertext portion
 # actually cool stuff
 cipher = ''
 i = 0 # i to i + block_len ( exclusive)
