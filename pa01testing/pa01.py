@@ -21,7 +21,7 @@
 | All input files are simple 8 bit ASCII input
 | All execute commands above have been tested on Eustis
 |
-| Class: CIS3360 - Security in Computing - Summer 2024
+| Class: CIS3360 - Security in Computing - Fall 2024
 | Instructor: McAlpin
 | Due Date: September 15th 11:59pm
 +===========================================================================
@@ -31,7 +31,7 @@ import sys
 from sys import argv
 import os 
 
-def out(input:str):
+def out(input:str): #outputs in the 80 chars limit
     i = 0 # inclusive, start of char sys.stdout.write
     j = 80 # exclusive, end of char sys.stdout.write
     while(i < len(input)): # while i is smaller than length of the plaintext
@@ -41,51 +41,55 @@ def out(input:str):
         i+=80 # increment i 
         j+=80 # increment j 
 
+if len(argv) == 1:
+    exit()
+
 # note: sys stdout instead of print ( just in case )
+
 
 # converts the txt file to 2d list 
 #1st element (data[0][0]) is the matrix size (x by x)
-key = [list(map(int,line.split())) for line in open(argv[1])][1:]
-block_len = len(key) # block length
+key = [list(map(int,line.split())) for line in open(argv[1])][1:] # the key (cut off by first element )
+block_len = len(key) # block length, same as cutoff element
 
-
-plain = ''.join(ch for ch in open(argv[2]).read().lower() if (ch.isalpha() and ord(ch) < 123))  # the plaintext, lowercase and alpha only
-plain += str('x'*(block_len-(len(plain)%block_len))) # adds padding (key length - (plain length % key length ))
-
-#sys.stdout.write(data) debug
-
-#sys.stdout.write(data)
 
 
 # sys.stdout.writes the key matrix
-sys.stdout.write('\nKey matrix:\n')
-sys.stdout.write('\t')
-sys.stdout.write('\t'.join(str(x) for x in open(argv[1]).readlines()[1:]))
+sys.stdout.write('\nKey matrix:\n') # the key matrix
+sys.stdout.write('\t') 
+sys.stdout.write('\t'.join(str(x) for x in open(argv[1]).readlines()[1:])) # prints the key matrix from argv 
 
-sys.stdout.write('\nPlaintext:\n')
 
+
+
+sys.stdout.write('\nPlaintext:\n') # plaintext
+plain = ''.join(ch for ch in open(argv[2]).read().lower() if (ch.isalpha() and ord(ch) < 123))  # the plaintext, lowercase and alpha only
+plain += str('x'*(block_len-(len(plain)%block_len))) # adds padding (key length - (plain length % key length ))
 out(plain)
+
+
+
 
 sys.stdout.write('\nCiphertext:\n') # ciphertext portion
 # actually cool stuff
-cipher = ''
+cipher = '' #output ciphertext
 i = 0 # i to i + block_len ( exclusive)
 while(i < len(plain)): # iterate through the plaintext
     # matrix = key
     # note: matrix is square always
-    vector = plain[i:i+block_len] # the vector
-    for row in range(0, block_len):
-        sum = 0
-        for col in range(0, block_len):
-            sum+= key[row][col] * (ord(plain[i+col])-97)
-        cipher+=chr(sum%26 + 97)
+
+    # the vector is plain[i: i+block_len]
+    # iterating through it using col is plain[i+col]
+    for row in range(0, block_len): # for every row in the matrix ( key)
+        sum = 0 # sum 
+        for col in range(0, block_len): # for every column in the matrix
+            sum+= key[row][col] * (ord(plain[i+col])-97) # adds the product of matrix's rowxcol with the value of vector (starting from a = 0, converted from ascii)
+        cipher+=chr(sum%26 + 97) # mods the number by 26 and converts back to ascii, concating to the ciphertext output
 
     #print(vector)
-    i+=block_len
+    i+=block_len # iterates forward
 
-out(cipher)
-
-#os.system('cat ' + argv[1] + ' | sed \'1d\'')
+out(cipher) # prints ciphertext
 
 
 '''
